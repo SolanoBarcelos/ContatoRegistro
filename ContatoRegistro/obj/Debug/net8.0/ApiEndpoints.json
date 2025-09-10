@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "ContatoRegistro.WEB.Controllers.ContatoController",
+    "Method": "ObterTodos",
+    "RelativePath": "api/v1/contatos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContatoRegistro.WEB.Controllers.ContatoController",
+    "Method": "Criar",
+    "RelativePath": "api/v1/contatos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ContatoRegistro.Aplication.DTOs.CriarContatoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContatoRegistro.WEB.Controllers.ContatoController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/v1/contatos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContatoRegistro.WEB.Controllers.ContatoController",
+    "Method": "Atualizar",
+    "RelativePath": "api/v1/contatos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ContatoRegistro.Aplication.DTOs.AtualizarContatoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContatoRegistro.WEB.Controllers.ContatoController",
+    "Method": "Remover",
+    "RelativePath": "api/v1/contatos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
