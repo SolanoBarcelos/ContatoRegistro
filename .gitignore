@@ -1,1 +1,8 @@
-.vs
+# === Visual Studio / .NET ===
+.vs/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.ide
+*.sln.docstates
