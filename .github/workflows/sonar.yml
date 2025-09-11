@@ -45,8 +45,8 @@ jobs:
           /o:"${{ env.SONAR_ORG }}"
           /d:sonar.host.url="${{ env.SONAR_HOST_URL }}"
           /d:sonar.token="${{ env.SONAR_TOKEN }}"
-          /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-          /d:sonar.cs.cobertura.reportsPaths="**/TestResults/**/coverage.cobertura.xml"
+          /d:sonar.cs.vstest.reportsPaths="**/*.trx"
+          /d:sonar.cs.cobertura.reportsPaths="**/*coverage.cobertura.xml"
 
       - name: Build
         run: dotnet build ContatoRegistro.sln --configuration Release --no-incremental
@@ -57,6 +57,11 @@ jobs:
           --configuration Release
           --logger "trx;LogFileName=test-results.trx"
           --collect "XPlat Code Coverage"
+
+      - name: Show coverage files found
+        shell: pwsh
+        run: Get-ChildItem -Recurse -Filter coverage.cobertura.xml | % { $_.FullName }
+
 
       - name: End SonarCloud analysis
         run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
