@@ -42,12 +42,12 @@ jobs:
           /d:sonar.host.url="${{ env.SONAR_HOST_URL }}"
           /d:sonar.token="${{ env.SONAR_TOKEN }}"
           /d:sonar.cs.vstest.reportsPaths="**/*.trx"
+          /d:sonar.cs.cobertura.reportsPaths="**/TestResults/**/coverage.cobertura.xml"
           /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build ContatoRegistro.sln --configuration Release --no-incremental
 
-      # dowload arquivo de cobertura
       - name: Test with coverage (XPlat + runsettings)
         run: >
           dotnet test ContatoRegistro.sln
@@ -56,8 +56,18 @@ jobs:
           --collect "XPlat Code Coverage"
           --settings coverlet.runsettings.xml
 
-            - name: Upload coverage (Cobertura & TRX)
-        if: always() 
+      - name: Show coverage files found (debug)
+        if: always()
+        shell: pwsh
+        run: |
+          Write-Host "Looking for OpenCover:"
+          Get-ChildItem -Recurse -Filter coverage.opencover.xml | % { $_.FullName }
+          Write-Host "Looking for Cobertura:"
+          Get-ChildItem -Recurse -Filter coverage.cobertura.xml | % { $_.FullName }
+          
+      # dowload do arquivo de cobertura
+      - name: Upload coverage (Cobertura & TRX)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-and-tests
@@ -67,18 +77,6 @@ jobs:
             **/TestResults/**/coverage.opencover.xml
           if-no-files-found: warn
           retention-days: 7
-
-      - name: End SonarCloud analysis
-        run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
-
-      # listar os arquivos de cobertura encontrados
-      - name: Show coverage files found
-        shell: pwsh
-        run: |
-          Write-Host "Looking for OpenCover:"
-          Get-ChildItem -Recurse -Filter coverage.opencover.xml | % { $_.FullName }
-          Write-Host "Looking for Cobertura:"
-          Get-ChildItem -Recurse -Filter coverage.cobertura.xml | % { $_.FullName }
 
       - name: End SonarCloud analysis
         run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
