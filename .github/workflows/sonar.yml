@@ -42,22 +42,27 @@ jobs:
           /d:sonar.host.url="${{ env.SONAR_HOST_URL }}"
           /d:sonar.token="${{ env.SONAR_TOKEN }}"
           /d:sonar.cs.vstest.reportsPaths="**/*.trx"
-          /d:sonar.cs.cobertura.reportsPaths="**/*coverage.cobertura.xml"
+          /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build ContatoRegistro.sln --configuration Release --no-incremental
 
-      - name: Test with coverage
+      - name: Test with coverage (XPlat + runsettings)
         run: >
           dotnet test ContatoRegistro.sln
           --configuration Release
           --logger "trx;LogFileName=test-results.trx"
           --collect "XPlat Code Coverage"
+          --settings coverlet.runsettings
 
-      # Debug opcional: listar onde ficou o Cobertura
+      # opcional: listar os arquivos de cobertura encontrados
       - name: Show coverage files found
         shell: pwsh
-        run: Get-ChildItem -Recurse -Filter coverage.cobertura.xml | % { $_.FullName }
+        run: |
+          Write-Host "Looking for OpenCover:"
+          Get-ChildItem -Recurse -Filter coverage.opencover.xml | % { $_.FullName }
+          Write-Host "Looking for Cobertura:"
+          Get-ChildItem -Recurse -Filter coverage.cobertura.xml | % { $_.FullName }
 
       - name: End SonarCloud analysis
         run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
