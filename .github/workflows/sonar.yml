@@ -53,7 +53,7 @@ jobs:
           --configuration Release
           --logger "trx;LogFileName=test-results.trx"
           --collect "XPlat Code Coverage"
-          --settings coverlet.runsettings
+          --settings coverlet.runsettings.xml
 
       # opcional: listar os arquivos de cobertura encontrados
       - name: Show coverage files found
