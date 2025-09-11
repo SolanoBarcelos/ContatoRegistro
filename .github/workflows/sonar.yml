@@ -47,6 +47,7 @@ jobs:
       - name: Build
         run: dotnet build ContatoRegistro.sln --configuration Release --no-incremental
 
+      # dowload arquivo de cobertura
       - name: Test with coverage (XPlat + runsettings)
         run: >
           dotnet test ContatoRegistro.sln
@@ -55,7 +56,22 @@ jobs:
           --collect "XPlat Code Coverage"
           --settings coverlet.runsettings.xml
 
-      # opcional: listar os arquivos de cobertura encontrados
+            - name: Upload coverage (Cobertura & TRX)
+        if: always() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-and-tests
+          path: |
+            **/TestResults/**/*.trx
+            **/TestResults/**/coverage.cobertura.xml
+            **/TestResults/**/coverage.opencover.xml
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: End SonarCloud analysis
+        run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
+
+      # listar os arquivos de cobertura encontrados
       - name: Show coverage files found
         shell: pwsh
         run: |
