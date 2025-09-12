@@ -38,16 +38,10 @@ namespace TestContatoRegistro.TestesUnitarios.ObjetosValorDoninio
         [Fact]
         public void Ctor_DeveAplicarTrim()
         {
-            // arrange
             var original = " user@example.com ";
 
-
-            // act
             var vo = new EmailObjetoValor(original);
 
-
-            // assert
-            // Ajuste abaixo se a propriedade tiver outro nome (ex: Valor).
             vo.EmailValor.Should().Be("user@example.com");
         }
 
@@ -57,7 +51,7 @@ namespace TestContatoRegistro.TestesUnitarios.ObjetosValorDoninio
         {
             var a = new EmailObjetoValor("user@example.com");
             var b = new EmailObjetoValor("user@example.com");
-            (a == b).Should().BeTrue(); // record: igualdade por valor
+            (a == b).Should().BeTrue(); 
         }
     }
 }

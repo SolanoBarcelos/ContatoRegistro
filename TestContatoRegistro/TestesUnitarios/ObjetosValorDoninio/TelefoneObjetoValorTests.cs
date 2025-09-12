@@ -12,12 +12,11 @@ namespace TestContatoRegistro.TestesUnitarios.ObjetosValorDoninio
     public sealed class TelefoneObjetoValorTests
     {
         [Theory]
-        [InlineData("11987654321")] // SP móvel
-        [InlineData("21987654321")] // RJ móvel
-        [InlineData("(11) 98765-4321")] // formatado
+        [InlineData("11987654321")] 
+        [InlineData("21987654321")] 
+        [InlineData("(11) 98765-4321")] 
         public void Ctor_ComTelefoneValido_NaoDeveLancar(string numero)
         {
-            // Em FluentAssertions, NotThrow atua sobre Action (void). Aqui descartamos o retorno.
             Action act = () => _ = new TelefoneObjetoValor(numero);
             act.Should().NotThrow();
         }

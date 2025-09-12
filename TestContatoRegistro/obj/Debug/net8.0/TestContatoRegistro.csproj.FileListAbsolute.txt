@@ -123,3 +123,4 @@ C:\GIT\ContatoRegistro\TestContatoRegistro\obj\Debug\net8.0\TestContatoRegistro.
 C:\GIT\ContatoRegistro\TestContatoRegistro\obj\Debug\net8.0\ref\TestContatoRegistro.dll
 C:\GIT\ContatoRegistro\TestContatoRegistro\bin\Debug\net8.0\DotLiquid.dll
 C:\GIT\ContatoRegistro\TestContatoRegistro\bin\Debug\net8.0\it\DotLiquid.resources.dll
+C:\GIT\ContatoRegistro\TestContatoRegistro\obj\Debug\net8.0\TestContatoRegistro.sourcelink.json

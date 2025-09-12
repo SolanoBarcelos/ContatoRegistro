@@ -40,3 +40,4 @@ C:\GIT\ContatoRegistro\ContatoRegistro\obj\Debug\net8.0\refint\ContatoRegistro.d
 C:\GIT\ContatoRegistro\ContatoRegistro\obj\Debug\net8.0\ContatoRegistro.pdb
 C:\GIT\ContatoRegistro\ContatoRegistro\obj\Debug\net8.0\ContatoRegistro.genruntimeconfig.cache
 C:\GIT\ContatoRegistro\ContatoRegistro\obj\Debug\net8.0\ref\ContatoRegistro.dll
+C:\GIT\ContatoRegistro\ContatoRegistro\obj\Debug\net8.0\ContatoRegistro.sourcelink.json
