@@ -134,6 +134,11 @@
   "components": {
     "schemas": {
       "AtualizarContatoDTO": {
+        "required": [
+          "email",
+          "nome",
+          "telefone"
+        ],
         "type": "object",
         "properties": {
           "nome": {
